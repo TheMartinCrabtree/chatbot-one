@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import viteLogo from "/vite.svg";
 import "./App.css";
-import "@chatscope/chat-ui-kit-react-styles/dist/default/styles.min.css";
+import styles from "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
 import {
   MainContainer,
   ChatContainer,
