@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-import viteLogo from "/vite.svg";
+// import viteLogo from "/vite.svg";
 import "./App.css";
 import "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
 import {
@@ -12,6 +12,8 @@ import {
   TypingIndicator,
 } from "@chatscope/chat-ui-kit-react";
 
+const API_KEY = "testing";
+
 const LayoutContainer = styled.div`
   position: relative;
   height: 720px;
@@ -19,6 +21,7 @@ const LayoutContainer = styled.div`
 `;
 
 const App = () => {
+  const [isTyping, setIsTyping] = useState(false);
   const [messages, setMessages] = useState([
     {
       message: "Hello world!",
@@ -41,13 +44,23 @@ const App = () => {
 
     const newMessages = [...messages, newMessage];
     setMessages(newMessages);
+
+    setIsTyping(true);
   };
 
   return (
     <LayoutContainer>
       <MainContainer>
         <ChatContainer>
-          <MessageList>{messages && _renderMessages(messages)}</MessageList>
+          <MessageList
+            typingIndicator={
+              isTyping ? (
+                <TypingIndicator content="Please wait. A response is being written..." />
+              ) : null
+            }
+          >
+            {messages && _renderMessages(messages)}
+          </MessageList>
           <MessageInput
             placeholder="Type your message here."
             onSend={_handleSend}
