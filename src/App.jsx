@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import viteLogo from "/vite.svg";
 import "./App.css";
-import styles from "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
+import "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
 import {
   MainContainer,
   ChatContainer,
@@ -18,7 +18,7 @@ const LayoutContainer = styled.div`
   width: 1280px;
 `;
 
-function App() {
+const App = () => {
   const [messages, setMessages] = useState([
     {
       message: "Hello world!",
@@ -26,8 +26,10 @@ function App() {
     },
   ]);
 
-  const _renderMessages = (message) => {
-    return <Message key={uuid()} model={message} />;
+  const _renderMessages = (messages) => {
+    return messages.map((message, index) => {
+      return <Message key={index} model={message} />;
+    });
   };
 
   const _handleSend = async (message) => {
@@ -45,7 +47,7 @@ function App() {
     <LayoutContainer>
       <MainContainer>
         <ChatContainer>
-          <MessageList>{_renderMessages()}</MessageList>
+          <MessageList>{messages && _renderMessages(messages)}</MessageList>
           <MessageInput
             placeholder="Type your message here."
             onSend={_handleSend}
@@ -54,6 +56,6 @@ function App() {
       </MainContainer>
     </LayoutContainer>
   );
-}
+};
 
 export default App;
