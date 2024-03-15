@@ -12,7 +12,8 @@ import {
   TypingIndicator,
 } from "@chatscope/chat-ui-kit-react";
 
-const API_KEY = "testing";
+const testkey = import.meta.env.VITE_TEST_KEY;
+console.log("testkey", testkey);
 
 const LayoutContainer = styled.div`
   position: relative;
@@ -46,7 +47,11 @@ const App = () => {
     setMessages(newMessages);
 
     setIsTyping(true);
+
+    await _getChatGPTUpdate(newMessages);
   };
+
+  const _getChatGPTUpdate = async (chatMessages) => {};
 
   return (
     <LayoutContainer>
