@@ -68,25 +68,37 @@ const App = () => {
     // prefix role to set style of GPT response
     const systemMessage = {
       role: "system",
-      content: "Explain all concepts in the tone of a pirate."
-    }
+      content: "Explain all concepts in the tone of a New Yorker.",
+    };
 
     const apiRequestBody = {
-      "model": "gpt-3.5-turbo",
-      "messages": [
-        systemMessage,
-        ...apiMessages
-      ]
-    }
+      model: "gpt-3.5-turbo",
+      messages: [systemMessage, ...apiMessages],
+    };
 
-    await fetch("https://api.openai.com/v1/chat/completions",{
+    await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
-        "Authorization": "Bearer " + API_KEY,
+        Authorization: "Bearer " + API_KEY,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(apiRequestBody)
-    }).then((data)=>{return data.json()}.then((data)=>console.log("api returned data: ", data)));
+      body: JSON.stringify(apiRequestBody),
+    })
+      .then((data) => {
+        return data.json();
+      })
+      .then((data) => {
+        // console.log("api returned data: ", data);
+        // console.log("api returned message: ", data.choices[0].message.content);
+        setMessages([
+          ...chatMessages,
+          {
+            message: data.choices[0].message.content,
+            sender: "ChatGPT",
+          },
+        ]);
+        setIsTyping(false);
+      });
   };
 
   return (
@@ -94,6 +106,7 @@ const App = () => {
       <MainContainer>
         <ChatContainer>
           <MessageList
+            scrollBehavior="smooth"
             typingIndicator={
               isTyping ? (
                 <TypingIndicator content="Please wait. A response is being written..." />
