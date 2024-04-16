@@ -13,6 +13,7 @@ const LayoutContainer = ({ children }) => {
   return (
     <InnerLayoutWrapper>
       <h1>Chat with a New Yorker</h1>
+      <div>Using Chatscope UI and ChatGPT API</div>
       {children}
     </InnerLayoutWrapper>
   );
