@@ -7,8 +7,6 @@ const InnerLayoutWrapper = styled.div`
   width: 1280px;
 `;
 
-// position: relative;
-
 const LayoutContainer = ({ children }) => {
   return (
     <InnerLayoutWrapper>

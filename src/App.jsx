@@ -13,12 +13,6 @@ import {
 
 const API_KEY = import.meta.env.VITE_TEST_KEY;
 
-// const LayoutContainer = styled.div`
-//   position: relative;
-//   height: 720px;
-//   width: 1280px;
-// `;
-
 const App = () => {
   const [isTyping, setIsTyping] = useState(false);
   const [messages, setMessages] = useState([
