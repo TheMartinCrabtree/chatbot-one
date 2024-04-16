@@ -1,7 +1,5 @@
 import { useState } from "react";
 import styled from "styled-components";
-// import viteLogo from "/vite.svg";
-import "./App.css";
 import "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
 import {
   MainContainer,
@@ -88,8 +86,6 @@ const App = () => {
         return data.json();
       })
       .then((data) => {
-        // console.log("api returned data: ", data);
-        // console.log("api returned message: ", data.choices[0].message.content);
         setMessages([
           ...chatMessages,
           {
