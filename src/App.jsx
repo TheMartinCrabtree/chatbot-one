@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
+import LayoutContainer from "./components/LayoutContainer";
 import {
   MainContainer,
   ChatContainer,
@@ -12,11 +13,11 @@ import {
 
 const API_KEY = import.meta.env.VITE_TEST_KEY;
 
-const LayoutContainer = styled.div`
-  position: relative;
-  height: 720px;
-  width: 1280px;
-`;
+// const LayoutContainer = styled.div`
+//   position: relative;
+//   height: 720px;
+//   width: 1280px;
+// `;
 
 const App = () => {
   const [isTyping, setIsTyping] = useState(false);
@@ -86,10 +87,18 @@ const App = () => {
         return data.json();
       })
       .then((data) => {
+        const newMessage =
+          data &&
+          data.choices &&
+          data.choices[0] &&
+          data.choices[0].message &&
+          data.choices[0].message.content
+            ? data.choices[0].message.content
+            : "Sorry! There was an issue contacting ChatGPT";
         setMessages([
           ...chatMessages,
           {
-            message: data.choices[0].message.content,
+            message: newMessage,
             sender: "ChatGPT",
           },
         ]);
