@@ -22,10 +22,10 @@ const API_KEY = import.meta.env.VITE_TEST_KEY;
 const App = () => {
   const [isTyping, setIsTyping] = useState(false);
   const [messages, setMessages] = useState([
-    {
-      message: "Hello world!",
-      sender: "This is the Sender",
-    },
+    // {
+    //   message: "example message format",
+    //   sender: "This is the Sender",
+    // },
   ]);
 
   const _renderMessages = (messages) => {
